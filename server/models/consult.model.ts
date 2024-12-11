@@ -16,7 +16,9 @@ import {
     declare type: string;
     declare appointmentDateTime: string;
     declare doctorName: string;
-    declare status: 'pending' | 'completed' | 'cancelled'
+    declare reason: string;
+    declare consultationUrl: string;
+    declare status: 'pending' | 'completed' | 'confirmed' | 'rejected'
   }
 
   export const ConsultationModel = sequelize.define<Consultation>('consultations', {
@@ -37,12 +39,20 @@ import {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    reason: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    consultationUrl: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     doctorName: {
         type: DataTypes.STRING,
         allowNull: false,
     },
     status: {
-        type: DataTypes.ENUM("pending", "completed", "cancelled"),
+        type: DataTypes.ENUM("pending", "confirmed", "rejected", "completed"),
         allowNull: false,
     },
   }, {

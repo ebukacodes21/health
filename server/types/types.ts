@@ -61,10 +61,26 @@ export type UpdateAppointmentType = {
   status: "booked" | "completed" | "cancelled";
 };
 
-export type ConsultRequest = {
-  id: number;
+export type ConsultationRequest = {
   patientId: number;
-  consultationType: string;
+  type: string;
   appointmentDateTime: string;
   reason: string;
 };
+
+export type ConsultationType = {
+  id: number;
+  patientId: number;
+  type: string;
+  appointmentDateTime: string;
+  reason: string;
+  doctorName: string;
+  consultationUrl: string;
+  status: "pending" | "rejected" | "confirmed" | "completed";
+};
+
+export type UpdateConsultationType = {
+    id?: number;
+    patientId: number;
+    status: "pending" | "rejected" | "confirmed" | "completed";
+  };

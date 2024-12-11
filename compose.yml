@@ -40,6 +40,20 @@ services:
     networks:
       - app-net
 
+  health:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      POSTGRES_DB: ${POSTGRESQL_DATABASE_NAME}
+      POSTGRES_USER: ${POSTGRESQL_DATABASE_USER}
+      POSTGRES_PASSWORD: ${POSTGRESQL_DATABASE_PASSWORD}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+
 networks:
   app-net:
     driver: bridge
