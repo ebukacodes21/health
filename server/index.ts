@@ -1,13 +1,12 @@
 import HealthServer from "./common/server";
 import routes from "./route";
-import config from 'config'
 
-const port = config.get<number>("port")
+const port = process.env.PORT!
 // instantiate a new server here
 const server = new HealthServer()
 server.configureDb().then(() => { 
     server.router(routes)
-    server.listen(port)
+    server.listen(Number(port))
 }).catch((error) => {
     console.log(error)
  })

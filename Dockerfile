@@ -1,28 +1,17 @@
 # Build stage
-FROM node:alpine AS builder
-# entry
+FROM node:18-alpine3.20 AS builder
 WORKDIR /app
-# Copy the package files and install dependencies
 COPY package*.json ./
 RUN npm install
-# Copy the source file
 COPY . .
-# Ensure that tsc runs and creates the dist folder
-RUN npm run build  # compile TypeScript
-
-
+RUN npm run build
 
 # Run stage
-FROM node:alpine
+FROM node:18-alpine3.20
 WORKDIR /app
-# Copy the compiled output from the builder stage
-COPY --from=builder /app/dist .  
-# Copy env
-COPY .env ./  
-# Install production dependencies
-COPY package*.json ./
-RUN npm install --production
-# Exposed port
+COPY --from=builder /app/dist /app/dist
+COPY --from=builder /app/package*.json /app/
+RUN npm install --only=production
+COPY .env .env
 EXPOSE 8000
-# Run the application
-CMD ["node", "dist/index.js"]  # entry point is index.js
+CMD ["node", "dist/index.js"]

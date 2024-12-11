@@ -1,39 +1,42 @@
 import { Sequelize } from '@sequelize/core';
 import { PostgresDialect } from '@sequelize/postgres';
-import config from 'config'
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
-// postgresql auth
-const databaseName = config.get<string>("databaseName")
-const databaseUser = config.get<string>("databaseUser")
-const databasePassword = config.get<string>("databasePassword")
-const host = config.get<string>("databaseHost")
-const port = config.get<number>("databasePort")
+// postgres
+const databaseName = process.env.POSTGRESQL_DATABASE_NAME!;
+const databaseUser = process.env.POSTGRESQL_DATABASE_USER!;
+const databasePassword = process.env.POSTGRESQL_DATABASE_PASSWORD!;
+const host = process.env.POSTGRESQL_DATABASE_HOST!;
+const port = process.env.POSTGRESQL_DATABASE_PORT!;
 
-// mongo
-const mongoUser = config.get<string>("mongoUser")
-const mongoPassword = config.get<string>("mongoPassword") 
-const mongoName = config.get<string>("mongoName") 
-const mongoHost = config.get<string>("mongoHost") 
-const mongoPort = config.get<string>("mongoPort") 
+// mongodb
+const mongoUser = process.env.MONGO_INITDB_ROOT_USERNAME!;
+const mongoPassword = process.env.MONGO_INITDB_ROOT_PASSWORD!;
+const mongoName = process.env.MONGO_INITDB_DATABASE!;
+const mongoHost = process.env.MONGO_DATABASE_HOST!;
+const mongoPort = process.env.MONGO_DATABASE_PORT!;
 
+// posgres connection
 export const sequelize = new Sequelize({
-    dialect: PostgresDialect,
-    database: databaseName,
-    user: databaseUser,
-    password: databasePassword,
-    host,
-    port,
-    ssl: false,
-    clientMinMessages: 'notice',
-  });
+  dialect: PostgresDialect,
+  database: databaseName,
+  user: databaseUser,  
+  password: databasePassword, 
+  host, 
+  port: Number(port),  
+  ssl: false,  
+  clientMinMessages: 'notice',
+});
 
-const uri = `mongodb://${mongoUser}:${mongoPassword}@${mongoHost}:${mongoPort}/${mongoName}?authSource=admin`
+// MongoDB connection
+const uri = `mongodb://${mongoUser}:${mongoPassword}@${mongoHost}:${mongoPort}/${mongoName}?authSource=admin`;
 export const connectMongo = async () => {
   try {
-    await mongoose.connect(uri)
+    await mongoose.connect(uri);
   } catch (error) {
     console.error('Failed to connect to MongoDB:', error);
-    throw error; 
+    throw error;
   }
 };

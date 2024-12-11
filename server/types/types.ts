@@ -80,7 +80,61 @@ export type ConsultationType = {
 };
 
 export type UpdateConsultationType = {
-    id?: number;
-    patientId: number;
-    status: "pending" | "rejected" | "confirmed" | "completed";
+  id?: number;
+  patientId: number;
+  status: "pending" | "rejected" | "confirmed" | "completed";
+};
+
+export type MedicalRecordType = {
+  patient: {
+    patientId: number; 
   };
+  medicalHistory: {
+    pastConditions: string[];
+    surgeries: string[];
+    allergies: string[];
+    familyHistory: string[];
+  };
+  doctorReport: {
+    prescriptions: {
+      medicationName: string;
+      dosage: string;
+      prescribedBy: string;
+      startDate: string;
+      endDate?: string;
+    }[];
+    labResults: {
+      testName: string;
+      result: string;
+      date: string;
+      notes?: string;
+    }[];
+  };
+  createdAt?: string;
+  updatedAt: string;
+};
+
+export type UpdateMedicalRecordType = {
+  medicalHistory: {
+    pastConditions: string[];
+    surgeries: string[];
+    allergies: string[];
+    familyHistory: string[];
+  };
+  doctorReport: {
+    prescriptions: {
+      medicationName: string;
+      dosage: string;
+      prescribedBy: string;
+      startDate: string;
+      endDate?: string;
+    }[];
+    labResults: {
+      testName: string;
+      result: string;
+      date: string;
+      notes?: string;
+    }[];
+  };
+  updatedAt: string;
+};

@@ -2,7 +2,7 @@ server:
 	npm run dev
 
 composeup:
-	docker compose --env-file .env up -d
+	docker compose --env-file .env up --build
 
 composedown:
 	docker compose down

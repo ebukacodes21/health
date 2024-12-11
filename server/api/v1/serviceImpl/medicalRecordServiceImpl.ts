@@ -1,3 +1,4 @@
+import { MedicalRecordType, UpdateMedicalRecordType } from "../../../types/types";
 import { MedicalRecordRepository } from "../repository/medicalRecord.repository";
 import { PatientRepository } from "../repository/patient.repository";
 import { MedicalRecordService } from "../services/medicalRecord.service";
@@ -11,24 +12,27 @@ export class MedicalRecordServiceImpl implements MedicalRecordService {
     }
 
     // create medical record
-    public async CreateMedicalRecord(body: any) {
-
+    public async CreateMedicalRecord(body: MedicalRecordType): Promise<MedicalRecordType> {
         try {
-            const patientExists = this.patientRepository.findPatient(body.patientId)
+            const patientExists = await this.patientRepository.findPatient(body.patient.patientId)
             if(!patientExists){
               throw new Error("no patient found")
             }
             // use patient id to create patientId in mongodb
-            await this.medicalRecordRepository.createMedicalRecord(body)
+            return this.medicalRecordRepository.createMedicalRecord(body)
         } catch (error) {
             throw error
         }
     }
 
     // get a single record
-    public async GetMedicalRecord(id: string, patientId: number) {
+    public async GetMedicalRecord(id: string, patientId: number): Promise<MedicalRecordType> {
         try {
-            return this.medicalRecordRepository.findRecord(id, patientId)
+            const record = await this.medicalRecordRepository.findRecord(id, patientId) as MedicalRecordType
+            if(!record){
+                throw new Error("no medical record found")
+            }
+            return record
         } catch (error) {
             throw error
         }
@@ -37,5 +41,18 @@ export class MedicalRecordServiceImpl implements MedicalRecordService {
     // get all records
     public async GetMedicalRecords() {
         return this.medicalRecordRepository.findAllRecords()
+    }
+
+    // update medical record
+    public async UpdateMedicalRecord(id: string, patientId: number, body: UpdateMedicalRecordType ): Promise<MedicalRecordType> {
+        try {
+            const updatedRecord = await this.medicalRecordRepository.updateMedicalRecord(id, patientId, body);
+            if (!updatedRecord) {
+              throw new Error("no record found");
+            }
+            return updatedRecord;
+          } catch (error) {
+            throw error;
+          }
     }
 }

@@ -16,7 +16,7 @@ export class PatientRepository {
                 age: body.age,
                 password: hash,
                 phone: body.phone,
-                role: "admin"
+                role: "patient"
             })
         } catch (error) {
             throw error

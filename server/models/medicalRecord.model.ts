@@ -1,48 +1,36 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, model, Document } from 'mongoose';
+import { MedicalRecordType } from '../types/types';
 
-const medicalRecordSchema = new mongoose.Schema({
+const medicalRecordSchema = new Schema({
   patient: {
-    type: mongoose.Schema.Types.ObjectId,
-    patientId: { 
-      type: Number, 
-      required: true, 
-    },
-    required: true,
+    // _id: { type: mongoose.Schema.Types.ObjectId, required: true }, 
+    patientId: { type: Number, required: true }, 
   },
   medicalHistory: {
-    pastConditions: [String], 
-    surgeries: [String], 
-    allergies: [String], 
-    familyHistory: [String],
+    pastConditions: { type: [String], default: [] },
+    surgeries: { type: [String], default: [] },
+    allergies: { type: [String], default: [] },
+    familyHistory: { type: [String], default: [] },
   },
   doctorReport: {
     prescriptions: [{
       medicationName: { type: String, required: true },
       dosage: { type: String, required: true },
       prescribedBy: { type: String },
-      startDate: { type: Date, required: true },
-      endDate: { type: Date },
+      startDate: { type: String, required: true },
+      endDate: { type: String },
     }],
     labResults: [{
       testName: { type: String, required: true },
       result: { type: String },
-      date: { type: Date },
+      date: { type: String },
       notes: { type: String },
     }],
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
 });
 
-medicalRecordSchema.pre('save', function (next) {
-  this.updatedAt = new Date();
-  next();
-});
+const MedicalRecordModel = model<Document & MedicalRecordType>('MedicalRecord', medicalRecordSchema);
 
-export const MedicalRecordModel = mongoose.model('MedicalRecord', medicalRecordSchema);
+export { MedicalRecordModel };

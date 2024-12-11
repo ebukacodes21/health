@@ -34,7 +34,7 @@ import {
       allowNull: false,
     },
     code: {
-        type: DataTypes.UUIDV4,
+        type: DataTypes.UUID,
         allowNull: false,
         defaultValue: v4()
       },
