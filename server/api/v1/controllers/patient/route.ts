@@ -10,6 +10,10 @@ const patientRepository = new PatientRepository()
 const patientServiceImpl = new PatientServiceImpl(patientRepository)
 const patientController = new PatientController(patientServiceImpl)
 
+// patient can register
+// patient can login and receive an access token (jwt)
+// patient can update information
+// admin can view list of all patients
 export default express.Router()
     .post("/register", validateInput(patientRegisterSchema), (req, res) => patientController.register(req, res))
     .post("/login", validateInput(patientLoginSchema), (req, res) => patientController.login(req, res))
