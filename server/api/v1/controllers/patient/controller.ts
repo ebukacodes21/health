@@ -30,7 +30,7 @@ export class PatientController {
         .status(201)
         .json({ message: "registration successful", data: patient });
     } catch (error: any) {
-      console.log(error)
+      console.log(error);
       if (error.errors[0].type === "unique violation") {
         res
           .status(500)
@@ -72,7 +72,10 @@ export class PatientController {
     const body = req.body;
 
     try {
-      const result = await this.patientServiceImpl.UpdatePatient(Number(id), body);
+      const result = await this.patientServiceImpl.UpdatePatient(
+        Number(id),
+        body
+      );
       const patient = omit(result.toJSON(), privateFields) as PatientType;
       res.status(200).json({ message: "update successful", data: { patient } });
     } catch (error: any) {
@@ -94,15 +97,15 @@ export class PatientController {
   // get patients
   public async getPatients(req: Request, res: Response) {
     try {
-        const results = await this.patientServiceImpl.GetPatients();
-        const patients = results.map((result) => {
-            return omit(result.toJSON(), privateFields)
-        });
-        res
+      const results = await this.patientServiceImpl.GetPatients();
+      const patients = results.map((result) => {
+        return omit(result.toJSON(), privateFields);
+      });
+      res
         .status(200)
         .json({ message: "patients fetch successful", data: patients });
     } catch (error) {
-        res.status(400).json({ error: error });
+      res.status(400).json({ error: error });
     }
-}
+  }
 }
