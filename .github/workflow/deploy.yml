@@ -1,6 +1,6 @@
 name: deploy to production
 
-# events
+# events will be triggered on push to the main branch
 on:
   push:
     branches: [ main ]
