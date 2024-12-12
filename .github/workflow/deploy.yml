@@ -7,7 +7,7 @@ on:
 
 # authenticate github actions with aws and read repository content
 permissions:
-      id-token: write   # This is required for requesting the JWT
+      id-token: write   
       contents: read  
 
 # jobs
@@ -35,8 +35,9 @@ jobs:
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v2
 
+    # app.env was intentionally pushed to github because it will be prefilled with values gotten from aws secrets manager
     - name: Load secrets from aws secrets manager
-      run: aws secretsmanager get-secret-value --secret-id health --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > .env
+      run: aws secretsmanager get-secret-value --secret-id health --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > app.env
 
     # build and deploy
     - name: Build, tag, and push docker image to amazon ECR

@@ -7,4 +7,7 @@ composeup:
 composedown:
 	docker compose down
 
-.PHONY: server composeup composedown
+authenticate:
+	aws ecr get-login-password | docker login --username AWS --password-stdin 390403877220.dkr.ecr.us-east-1.amazonaws.com
+
+.PHONY: server composeup composedown authenticate
