@@ -1,0 +1,49 @@
+name: deploy to production
+
+# events will be triggered on push to the main branch
+on:
+  push:
+    branches: [ main ]
+
+# authenticate github actions with aws and read repository content
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read  
+
+# jobs
+jobs:
+
+  build:
+    name: build image and deploy
+    runs-on: ubuntu-latest
+
+    # steps
+    steps:
+    # checkout code of repo into the runner using existing action
+    - name: check out code
+      uses: actions/checkout@v3
+
+    # configure aws creds
+    - name: configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4 
+      with:
+        role-to-assume: arn:aws:iam::390403877220:role/github-ci
+        aws-region: us-east-1
+
+    # login aws
+    - name: login to amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Load secrets from aws secrets manager
+      run: aws secretsmanager get-secret-value --secret-id health --query SecretString --output text | jq -r 'to_entries|map("\(.key)=\(.value)")|.[]' > app.env
+
+    # build and deploy
+    - name: Build, tag, and push docker image to amazon ECR
+      env:
+        REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        REPOSITORY: health
+        IMAGE_TAG: ${{ github.sha }}
+      run: |
+        docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+        docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
