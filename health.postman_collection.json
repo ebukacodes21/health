@@ -1,0 +1,645 @@
+{
+	"info": {
+		"_postman_id": "8188d394-d41f-42ff-bdc8-048c6458c57e",
+		"name": "health",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39287937"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8000/api/v1/patients/register",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiZ2VvcmdlIiwibGFzdE5hbWUiOiJva2Fmb3IiLCJlbWFpbCI6Imdlb3JnZW9rYWZvMUBnbWFpbC5jb20iLCJhZ2UiOjI4LCJwaG9uZSI6IjA4MTY1OTE2Nzg1IiwiY3JlYXRlZEF0IjoiMjAyNC0xMi0xMFQxNTo0ODo1Mi41NzFaIiwidXBkYXRlZEF0IjoiMjAyNC0xMi0xMFQxNTo0ODo1Mi41NzFaIiwiaWF0IjoxNzMzODU0MTc4LCJleHAiOjE3MzM4NTUwNzh9.3ccK3dKCc-Vi1ROKH8EXVQGLL2OPLlzwI8cdR8_JomE",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\":\"velli\",\n    \"lastName\": \"dima\",\n    \"email\": \"freewayvelli@gmail.com\",\n    \"password\": \"test1234\",\n    \"age\": 38,\n    \"phone\": \"08165914785\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/patients/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"patients",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/health-tests/create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiam9uYXMiLCJsYXN0TmFtZSI6Im53ZWtlIiwiZW1haWwiOiJud2VrZXRvcnJlczFAZ21haWwuY29tIiwiYWdlIjo0MCwicGhvbmUiOiIwODE2NTkxNjc4NSIsInJvbGUiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MjA6NTMuNjYxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MjA6NTMuNjYxWiIsImlhdCI6MTczMzkwOTMxMywiZXhwIjoxNzMzOTEwMjEzfQ.5OGOcdqnNkAF8QbwSc6oaoLfdPlxKYWnmxe0enIlVMY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\":\"skin\",\n    \"description\": \"a skin test\",\n    \"facility\": \"skin facility\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/health-tests/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"health-tests",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/patients/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"freewayvelli@gmail.com\",\n    \"password\": \"test1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/patients/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"patients",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/patients/update?id=1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiZ2VvcmdlIiwibGFzdE5hbWUiOiJva2Fmb3IiLCJlbWFpbCI6Imdlb3JnZW9rYWZvMUBnbWFpbC5jb20iLCJhZ2UiOjQwLCJwaG9uZSI6IjA4MTY1OTE2Nzg1Iiwicm9sZSI6InBhdGllbnQiLCJjcmVhdGVkQXQiOiIyMDI0LTEyLTExVDA5OjE3OjIwLjgzMVoiLCJ1cGRhdGVkQXQiOiIyMDI0LTEyLTExVDA5OjE3OjIwLjgzMVoiLCJpYXQiOjE3MzM5MDk5MjgsImV4cCI6MTczMzkxMDgyOH0.g1UfBEm4wFdyOBO8Tp2kTdppp9Z8HXbfqa58Pp-yF6A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\":\"ebuka\",\n    \"lastName\": \"okafor\",\n    \"email\": \"georgeokafo1@gmail.com\",\n    \"password\": \"test1234\",\n    \"age\": 40,\n    \"phone\": \"08165916785\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/patients/update?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"patients",
+						"update"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/patients/get-patients",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiam9uYXMiLCJsYXN0TmFtZSI6Im53ZWtlIiwiZW1haWwiOiJud2VrZXRvcnJlczFAZ21haWwuY29tIiwiYWdlIjo0MCwicGhvbmUiOiIwODE2NTkxNjc4NSIsInJvbGUiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MjA6NTMuNjYxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MjA6NTMuNjYxWiIsImlhdCI6MTczMzkxMDM5NSwiZXhwIjoxNzMzOTExMjk1fQ.BQZwUuRnXEBlYVIIr3bVodbUFzNGtcrLi9Y55OVEaoY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/patients/get-patients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"patients",
+						"get-patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/health-tests/browse",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiZWJ1a2EiLCJsYXN0TmFtZSI6Im9rYWZvciIsImVtYWlsIjoiZ2Vvcmdlb2thZm8xQGdtYWlsLmNvbSIsImFnZSI6NDAsInBob25lIjoiMDgxNjU5MTY3ODUiLCJyb2xlIjoicGF0aWVudCIsImNyZWF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MTc6MjAuODMxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6NDQ6MjIuMzg5WiIsImlhdCI6MTczMzkxMDU5MywiZXhwIjoxNzMzOTExNDkzfQ.AwiFrScZEFkWL-3NoKIpcQ5ObZFqW1ghEYGhHwEVYRg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/health-tests/browse",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"health-tests",
+						"browse"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/appointments/book",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiZWJ1a2EiLCJsYXN0TmFtZSI6Im9rYWZvciIsImVtYWlsIjoiZ2Vvcmdlb2thZm8xQGdtYWlsLmNvbSIsImFnZSI6NDAsInBob25lIjoiMDgxNjU5MTY3ODUiLCJyb2xlIjoicGF0aWVudCIsImNyZWF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MTc6MjAuODMxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6NDQ6MjIuMzg5WiIsImlhdCI6MTczMzkxNjgxOCwiZXhwIjoxNzMzOTE3NzE4fQ.OIwl2hyn5H5ZcjY2oXLQTGZxbR-Xd2ezoMW1dnu6vyk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"patientId\": 1,\n    \"testId\": 2,\n    \"appointmentDateTime\": \"2024-12-11T09:30:56.662Z\",\n    \"doctorName\": \"Dr.Chikezie Obi\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/appointments/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"appointments",
+						"book"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/appointments/all",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiam9uYXMiLCJsYXN0TmFtZSI6Im53ZWtlIiwiZW1haWwiOiJud2VrZXRvcnJlczFAZ21haWwuY29tIiwiYWdlIjo0MCwicGhvbmUiOiIwODE2NTkxNjc4NSIsInJvbGUiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MjA6NTMuNjYxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MjA6NTMuNjYxWiIsImlhdCI6MTczMzkxNzEwOCwiZXhwIjoxNzMzOTE4MDA4fQ.1Y9hqNK3p9QagK45Z06oBFr_e8uktYYVknnC85bfu3Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/appointments/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"appointments",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/appointments/update?id=1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiam9uYXMiLCJsYXN0TmFtZSI6Im53ZWtlIiwiZW1haWwiOiJud2VrZXRvcnJlczFAZ21haWwuY29tIiwiYWdlIjo0MCwicGhvbmUiOiIwODE2NTkxNjc4NSIsInJvbGUiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MjA6NTMuNjYxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MjA6NTMuNjYxWiIsImlhdCI6MTczMzkxNzEwOCwiZXhwIjoxNzMzOTE4MDA4fQ.1Y9hqNK3p9QagK45Z06oBFr_e8uktYYVknnC85bfu3Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"patientId\": 1,\n    \"testId\": 1,\n    \"status\": \"completed\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/appointments/update?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"appointments",
+						"update"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/consultations/consult",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiZWJ1a2EiLCJsYXN0TmFtZSI6Im9rYWZvciIsImVtYWlsIjoiZ2Vvcmdlb2thZm8xQGdtYWlsLmNvbSIsImFnZSI6NDAsInBob25lIjoiMDgxNjU5MTY3ODUiLCJyb2xlIjoicGF0aWVudCIsImNyZWF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MTc6MjAuODMxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6NDQ6MjIuMzg5WiIsImlhdCI6MTczMzkyNjA4MywiZXhwIjoxNzMzOTI2OTgzfQ.V3w09Ra89pEQhlsIjUuypjR9w4huxL47TTeLu0pszmQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"patientId\": 3,\n    \"type\": \"video\",\n    \"appointmentDateTime\": \"2024-12-15T14:10:08.887Z\",\n    \"reason\": \"Ante-natal with waifu\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/consultations/consult",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"consultations",
+						"consult"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/consultations/all",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiam9uYXMiLCJsYXN0TmFtZSI6Im53ZWtlIiwiZW1haWwiOiJud2VrZXRvcnJlczFAZ21haWwuY29tIiwiYWdlIjo0MCwicGhvbmUiOiIwODE2NTkxNjc4NSIsInJvbGUiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MjA6NTMuNjYxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MjA6NTMuNjYxWiIsImlhdCI6MTczMzkyNjQ3NCwiZXhwIjoxNzMzOTI3Mzc0fQ.EU8aOjZQOw49mPtuGYrBX60M6qG46c1uK3HxDfjrzQU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/consultations/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"consultations",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/consultations/update?id=2",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZmlyc3ROYW1lIjoiam9uYXMiLCJsYXN0TmFtZSI6Im53ZWtlIiwiZW1haWwiOiJud2VrZXRvcnJlczFAZ21haWwuY29tIiwiYWdlIjo0MCwicGhvbmUiOiIwODE2NTkxNjc4NSIsInJvbGUiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MjA6NTMuNjYxWiIsInVwZGF0ZWRBdCI6IjIwMjQtMTItMTFUMDk6MjA6NTMuNjYxWiIsImlhdCI6MTczMzkyNjQ3NCwiZXhwIjoxNzMzOTI3Mzc0fQ.EU8aOjZQOw49mPtuGYrBX60M6qG46c1uK3HxDfjrzQU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"patientId\": 3,\n    \"status\": \"confirmed\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/consultations/update?id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"consultations",
+						"update"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/itura/message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"message\":\"how are you?\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/itura/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"itura",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/medical-records/create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoidmVsbGkiLCJsYXN0TmFtZSI6ImRpbWEiLCJlbWFpbCI6ImZyZWV3YXl2ZWxsaUBnbWFpbC5jb20iLCJhZ2UiOjM4LCJwaG9uZSI6IjA4MTY1OTE0Nzg1Iiwicm9sZSI6ImFkbWluIiwiY3JlYXRlZEF0IjoiMjAyNC0xMi0xMVQyMTo0Njo1NC42MzlaIiwidXBkYXRlZEF0IjoiMjAyNC0xMi0xMVQyMTo0Njo1NC42MzlaIiwiaWF0IjoxNzMzOTU3NjcxLCJleHAiOjE3MzM5NTg1NzF9.3etdAz6Yu2nVyP7ZxqHJgftSAt0f6WCP7sI1b-O-wv0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"patient\": {\n    \"patientId\": 1\n  },\n  \"medicalHistory\": {\n    \"pastConditions\": [\"Hypertension\", \"Asthma\"],\n    \"surgeries\": [\"Appendectomy\"],\n    \"allergies\": [\"Penicillin\"],\n    \"familyHistory\": [\"Diabetes\", \"Heart Disease\"]\n  },\n  \"doctorReport\": {\n    \"prescriptions\": [\n      {\n        \"medicationName\": \"Aspirin\",\n        \"dosage\": \"100mg\",\n        \"prescribedBy\": \"Dr. John Smith\",\n        \"startDate\": \"2024-01-15T00:00:00Z\",\n        \"endDate\": \"2024-02-15T00:00:00Z\"\n      },\n      {\n        \"medicationName\": \"Metformin\",\n        \"dosage\": \"500mg\",\n        \"prescribedBy\": \"Dr. Alice Johnson\",\n        \"startDate\": \"2024-01-10T00:00:00Z\"\n      }\n    ],\n    \"labResults\": [\n      {\n        \"testName\": \"Blood Test\",\n        \"result\": \"Normal\",\n        \"date\": \"2024-01-12T00:00:00Z\",\n        \"notes\": \"No abnormalities detected.\"\n      },\n      {\n        \"testName\": \"X-Ray\",\n        \"result\": \"Clear\",\n        \"date\": \"2024-01-14T00:00:00Z\",\n        \"notes\": \"No fractures or other issues.\"\n      }\n    ]\n  },\n  \"createdAt\": \"2024-01-15T10:00:00Z\",\n  \"updatedAt\": \"2024-01-15T10:00:00Z\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/medical-records/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"medical-records",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/medical-records/get-records",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoidmVsbGkiLCJsYXN0TmFtZSI6ImRpbWEiLCJlbWFpbCI6ImZyZWV3YXl2ZWxsaUBnbWFpbC5jb20iLCJhZ2UiOjM4LCJwaG9uZSI6IjA4MTY1OTE0Nzg1Iiwicm9sZSI6ImFkbWluIiwiY3JlYXRlZEF0IjoiMjAyNC0xMi0xMVQyMTo0Njo1NC42MzlaIiwidXBkYXRlZEF0IjoiMjAyNC0xMi0xMVQyMTo0Njo1NC42MzlaIiwiaWF0IjoxNzMzOTU3NjcxLCJleHAiOjE3MzM5NTg1NzF9.3etdAz6Yu2nVyP7ZxqHJgftSAt0f6WCP7sI1b-O-wv0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/medical-records/get-records",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"medical-records",
+						"get-records"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8000/api/v1/medical-records/get-record",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoidmVsbGkiLCJsYXN0TmFtZSI6ImRpbWEiLCJlbWFpbCI6ImZyZWV3YXl2ZWxsaUBnbWFpbC5jb20iLCJhZ2UiOjM4LCJwaG9uZSI6IjA4MTY1OTE0Nzg1Iiwicm9sZSI6ImFkbWluIiwiY3JlYXRlZEF0IjoiMjAyNC0xMi0xMVQyMTo0Njo1NC42MzlaIiwidXBkYXRlZEF0IjoiMjAyNC0xMi0xMVQyMTo0Njo1NC42MzlaIiwiaWF0IjoxNzMzOTU0NTY2LCJleHAiOjE3MzM5NTU0NjZ9.4H4tOj_q4KlJJusCeb1sLawg6ti0p_e6q1AG-anJwvU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"_id\": \"675a076fda93f1103831743d\",\n    \"patientId\": 123\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/medical-records/get-record",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"medical-records",
+						"get-record"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
