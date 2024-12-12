@@ -4,6 +4,13 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 dotenv.config();
 
+/**
+ * THESE ENVIRONMENT VARIABLES WILL BE PREFILLED
+ * WITH PRODUCTION VALUES FROM THE AWS SECRETS
+ * MANAGER
+ */
+
+
 // postgres
 const databaseName = process.env.POSTGRESQL_DATABASE_NAME!;
 const databaseUser = process.env.POSTGRESQL_DATABASE_USER!;
