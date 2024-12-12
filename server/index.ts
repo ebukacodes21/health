@@ -2,6 +2,9 @@ import HealthServer from "./common/server";
 import routes from "./route";
 
 const port = process.env.PORT!
+
+// configure db is designed to connect to
+// postgreSQL and MongoDB
 // instantiate a new server here
 const server = new HealthServer()
 server.configureDb().then(() => { 
