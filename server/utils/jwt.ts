@@ -1,8 +1,7 @@
 import jwt from 'jsonwebtoken'
-import config from 'config'
 import { PatientType } from '../types/types';
 
-const accessKey = config.get<string>("accessTokenPrivateKey");
+const accessKey = process.env.ACCESS_TOKEN_PRIVATE_KEY!;
 
 // sign token
 export function signToken(payload: PatientType, options: jwt.SignOptions) {

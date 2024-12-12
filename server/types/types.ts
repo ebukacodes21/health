@@ -61,10 +61,80 @@ export type UpdateAppointmentType = {
   status: "booked" | "completed" | "cancelled";
 };
 
-export type ConsultRequest = {
-  id: number;
+export type ConsultationRequest = {
   patientId: number;
-  consultationType: string;
+  type: string;
   appointmentDateTime: string;
   reason: string;
+};
+
+export type ConsultationType = {
+  id: number;
+  patientId: number;
+  type: string;
+  appointmentDateTime: string;
+  reason: string;
+  doctorName: string;
+  consultationUrl: string;
+  status: "pending" | "rejected" | "confirmed" | "completed";
+};
+
+export type UpdateConsultationType = {
+  id?: number;
+  patientId: number;
+  status: "pending" | "rejected" | "confirmed" | "completed";
+};
+
+export type MedicalRecordType = {
+  patient: {
+    patientId: number; 
+  };
+  medicalHistory: {
+    pastConditions: string[];
+    surgeries: string[];
+    allergies: string[];
+    familyHistory: string[];
+  };
+  doctorReport: {
+    prescriptions: {
+      medicationName: string;
+      dosage: string;
+      prescribedBy: string;
+      startDate: string;
+      endDate?: string;
+    }[];
+    labResults: {
+      testName: string;
+      result: string;
+      date: string;
+      notes?: string;
+    }[];
+  };
+  createdAt?: string;
+  updatedAt: string;
+};
+
+export type UpdateMedicalRecordType = {
+  medicalHistory: {
+    pastConditions: string[];
+    surgeries: string[];
+    allergies: string[];
+    familyHistory: string[];
+  };
+  doctorReport: {
+    prescriptions: {
+      medicationName: string;
+      dosage: string;
+      prescribedBy: string;
+      startDate: string;
+      endDate?: string;
+    }[];
+    labResults: {
+      testName: string;
+      result: string;
+      date: string;
+      notes?: string;
+    }[];
+  };
+  updatedAt: string;
 };

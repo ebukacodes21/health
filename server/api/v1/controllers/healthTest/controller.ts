@@ -17,12 +17,6 @@ export class HealthTestController {
               .status(201)
               .json({ message: "health test created successfully", data: test });
           } catch (error: any) {
-            if (error.errors[0].type === "unique violation") {
-              res
-                .status(500)
-                .json({ error: `${error.errors[0].path} already taken` });
-              return;
-            }
             res.status(400).json({ error: error });
           }
     }
